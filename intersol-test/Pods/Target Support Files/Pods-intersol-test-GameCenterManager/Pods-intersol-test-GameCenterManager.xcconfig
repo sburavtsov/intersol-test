@@ -1,0 +1,1 @@
+PODS_INTERSOL_TEST_GAMECENTERMANAGER_OTHER_LDFLAGS = -framework "GameKit" -framework "Security" -framework "SystemConfiguration"

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6B6D875A-56C9-4820-BC11-B39414664B42</string>
+	<key>IDESourceControlProjectName</key>
+	<string>intersol-test</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0DC0DF1533798144B176453FE34942F1EEE393BA</key>
+		<string>github.com:sburavtsov/intersol-test.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>intersol-test/intersol-test.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>0DC0DF1533798144B176453FE34942F1EEE393BA</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:sburavtsov/intersol-test.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>0DC0DF1533798144B176453FE34942F1EEE393BA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0DC0DF1533798144B176453FE34942F1EEE393BA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>intersol-test</string>
+		</dict>
+	</array>
+</dict>
+</plist>

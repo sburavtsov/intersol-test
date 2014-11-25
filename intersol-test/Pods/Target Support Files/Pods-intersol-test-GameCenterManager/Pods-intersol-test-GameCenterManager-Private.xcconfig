@@ -1,0 +1,5 @@
+#include "Pods-intersol-test-GameCenterManager.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/GameCenterManager" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/GameCenterManager" "${PODS_ROOT}/Headers/Public/Reachability" "${PODS_ROOT}/Headers/Public/TestFlightSDK" "${PODS_ROOT}/Headers/Public/VK-ios-sdk"
+OTHER_LDFLAGS = ${PODS_INTERSOL_TEST_GAMECENTERMANAGER_OTHER_LDFLAGS} -ObjC
+PODS_ROOT = ${SRCROOT}

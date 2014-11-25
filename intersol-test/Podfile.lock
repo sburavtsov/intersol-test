@@ -1,0 +1,42 @@
+PODS:
+  - AFNetworking (2.5.0):
+    - AFNetworking/NSURLConnection (= 2.5.0)
+    - AFNetworking/NSURLSession (= 2.5.0)
+    - AFNetworking/Reachability (= 2.5.0)
+    - AFNetworking/Security (= 2.5.0)
+    - AFNetworking/Serialization (= 2.5.0)
+    - AFNetworking/UIKit (= 2.5.0)
+  - AFNetworking/NSURLConnection (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.0)
+  - AFNetworking/Security (2.5.0)
+  - AFNetworking/Serialization (2.5.0)
+  - AFNetworking/UIKit (2.5.0):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - GameCenterManager (5.3):
+    - Reachability
+  - Reachability (3.2)
+  - TestFlightSDK (3.0.2)
+  - VK-ios-sdk (1.0.8.6)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.5)
+  - GameCenterManager (~> 5.3)
+  - TestFlightSDK (~> 3.0)
+  - VK-ios-sdk
+
+SPEC CHECKSUMS:
+  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
+  GameCenterManager: 9d36711a4688a59a728e0e3f9a050aa835fba618
+  Reachability: 1ef8adf5c4e3d362f96515d4278f68dad3c26930
+  TestFlightSDK: 0c24c533748d0d84bfe7a3cb6036fa79124d84ee
+  VK-ios-sdk: 2388a23081481384b1ad67d9e988d4dd9f8973d3
+
+COCOAPODS: 0.35.0
