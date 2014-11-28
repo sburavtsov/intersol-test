@@ -12,6 +12,8 @@
 
 + (YandexTranslateAPIClient *)sharedClient;
 
-- (void)getLanguages:(void(^)(NSURLSessionDataTask *task, id responseObject))success
-             failure:(void(^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (void)translateWord:(NSString *)wordToTranslate
+              success:(void(^)(NSString *translationResult))success
+              failure:(void(^)(NSError *error))failure;
+
 @end

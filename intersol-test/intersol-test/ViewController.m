@@ -22,12 +22,11 @@
 
     YandexTranslateAPIClient *translateClient = [YandexTranslateAPIClient sharedClient];
     
-    [translateClient getLanguages:^(NSURLSessionDataTask *task, id responseObject) {
+    [translateClient translateWord:@"world" success:^(NSString *translationResult) {
 
-        NSLog(@"Success: %@", responseObject);
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
+        NSLog(@"Translated to: %@", translationResult);
+    } failure:^(NSError *error) {
+        
         NSLog(@"Failure: %@", error);
     }];
 }
