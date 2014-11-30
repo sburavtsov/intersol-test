@@ -9,6 +9,7 @@
 #import "GameStepModel.h"
 
 @implementation GameStepModel
+@synthesize isSolved;
 
 - (instancetype)init {
     
@@ -25,12 +26,27 @@
     return self;
 }
 
-- (void)setCorrectTranslationIndex:(int)correctTranslationIndex {
+- (void)setCorrectTranslationIndex:(NSNumber *)correctTranslationIndex {
     
     _correctTranslationIndex = correctTranslationIndex;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"gameStepReady" object:self];
 }
 
+- (void)setUserTranslationIndex:(int)userTranslationIndex {
+
+    isSolved = YES;
+    
+    if (userTranslationIndex == [_correctTranslationIndex integerValue]) {
+        
+        _score = 10;
+    }
+}
+
+
+- (BOOL)isSolved {
+    
+    return isSolved;
+}
 
 @end

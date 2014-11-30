@@ -13,14 +13,20 @@
 
 @property (nonatomic) NSArray * sourceWordsBase;
 
-@property (nonatomic) NSMutableArray *gameSteps;
+@property (nonatomic) NSMutableArray * gameSteps;
+
+@property (nonatomic, readonly) GameStepModel * currentStep;
 
 @property (nonatomic) int playersScore;
 
 @property (nonatomic) int currentPage;
 
+@property (nonatomic) int solvedPages;
+
 @property (nonatomic) int gameStepCasesLimit;
 
 @property (nonatomic) int gameSessionTasksLimit;
 
+- (void)stepSolved:(int)wordIndex;
+- (void)changePage:(int)direction;
 @end

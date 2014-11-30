@@ -26,7 +26,42 @@
     
     self.currentPage = 0;
     
+    self.solvedPages = 0;
+    
     return self;
+}
+
+- (void)stepSolved:(int)wordIndex {
+
+    self.currentStep.userTranslationIndex = wordIndex;
+    
+    self.playersScore += self.currentStep.score;
+    self.solvedPages ++;
+}
+
+- (void) setCurrentPage:(int)currentPage {
+
+    _currentPage = currentPage;
+    
+    if (_currentPage < 0) {
+        
+        _currentPage = 0;
+    }
+    
+    if (_currentPage > _gameSteps.count) {
+        
+        _currentPage = _gameSteps.count - 1;
+    }
+}
+
+- (GameModel *)currentStep {
+    
+    return [self.gameSteps objectAtIndex:self.currentPage];
+}
+        
+- (void)changePage:(int)direction {
+    
+    self.currentPage += direction;
 }
 
 @end

@@ -17,11 +17,16 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *wordToTranslate;
+
 @property (weak, nonatomic) IBOutlet UIButton *translation1Button;
 @property (weak, nonatomic) IBOutlet UIButton *translation2Button;
 @property (weak, nonatomic) IBOutlet UIButton *translation3Button;
+
 @property (weak, nonatomic) IBOutlet UILabel *progressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *scoreLabel;
+
+@property (weak, nonatomic) IBOutlet UIButton *nextPageButton;
+@property (weak, nonatomic) IBOutlet UIButton *previousPageButton;
 
 - (IBAction)translationCaseSubmitted:(UIButton *)sender;
 - (IBAction)changePage:(UIButton *)sender;
@@ -46,21 +51,33 @@
 
 - (void)reloadGameCommonInfo {
     
-    self.progressLabel.text = [NSString stringWithFormat:@"%d", self.gameModel.currentPage];
-    self.progressLabel.text = [NSString stringWithFormat:@"%d", self.gameModel.playersScore];
 }
 
-- (void)reloadGameTask {
+- (void)reloadGameView {
 
-    GameStepModel *model = [self.gameModel.gameSteps objectAtIndex:self.gameModel.currentPage];
-    self.wordToTranslate.text = [self.gameModel.sourceWordsBase objectAtIndex:model.correctTranslationIndex];
+    GameStepModel *model = self.gameModel.currentStep;
+    self.wordToTranslate.text = [self.gameModel.sourceWordsBase objectAtIndex:[model.correctTranslationIndex integerValue]];
     
-    self.translation1Button.titleLabel.text = [model.selectedWordsTranslations objectAtIndex:0];
-    self.translation2Button.titleLabel.text = [model.selectedWordsTranslations objectAtIndex:1];
-    self.translation3Button.titleLabel.text = [model.selectedWordsTranslations objectAtIndex:2];
+    [self.translation1Button setTitle:[model.selectedWordsTranslations objectAtIndex:0] forState:UIControlStateNormal];
+    self.translation1Button.tag = [[model.selectedWordsIndexes objectAtIndex:0] integerValue];
+    self.translation1Button.enabled = ! model.isSolved;
+
+    [self.translation2Button setTitle:[model.selectedWordsTranslations objectAtIndex:1] forState:UIControlStateNormal];
+    self.translation2Button.tag = [[model.selectedWordsIndexes objectAtIndex:1] integerValue];
+    self.translation2Button.enabled = ! model.isSolved;
+    
+    [self.translation3Button setTitle:[model.selectedWordsTranslations objectAtIndex:2] forState:UIControlStateNormal];
+    self.translation3Button.tag = [[model.selectedWordsIndexes objectAtIndex:2] integerValue];
+    self.translation3Button.enabled = ! model.isSolved;
+    
+    self.progressLabel.text = [NSString stringWithFormat:@"%d", self.gameModel.currentPage];
+    self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.gameModel.playersScore];
+    
+    self.nextPageButton.enabled = (self.gameModel.currentPage < self.gameModel.solvedPages);
+    self.previousPageButton.enabled = (self.gameModel.currentPage > 0);
 }
 
-- (void)requestSelectedTranslations {
+- (void)requestTranslations {
     
     for (int i = 0; i < self.gameModel.gameSessionTasksLimit; i++) {
         
@@ -77,10 +94,9 @@
                                              
                                             [stepModel.selectedWordsTranslations addObject:translationResult];
                                             
-                                            if ([stepModel.selectedWordsIndexes count] > self.gameModel.gameStepCasesLimit) {
+                                            if ([stepModel.selectedWordsIndexes count] >= self.gameModel.gameStepCasesLimit) {
                                                 
-                                                stepModel.correctTranslationIndex = [[stepModel.selectedWordsIndexes objectAtIndex:arc4random_uniform([stepModel.selectedWordsIndexes count])] integerValue];
-                                                ;
+                                                stepModel.correctTranslationIndex = [stepModel.selectedWordsIndexes objectAtIndex:arc4random_uniform([stepModel.selectedWordsIndexes count])];
                                             }
                                         } failure:^(NSError *error) {
                                             
@@ -94,20 +110,27 @@
 
 - (void)requestSourceWords {
     
+    self.gameModel.sourceWordsBase = [NSArray arrayWithObjects:@"test",@"beauty", @"fun", @"salt", @"pepper", @"bike", @"daemon", @"chicken", @"cannon", @"folder", @"river", @"rain", nil];
+
+    [self requestTranslations];
+    /*
+    
     [self.randomWordClient getWords:self.gameModel.gameSessionTasksLimit * self.gameModel.gameStepCasesLimit success:^(NSArray *randomWordsArray) {
         
         self.gameModel.sourceWordsBase = randomWordsArray;
-        [self requestSelectedTranslations];
+        [self requestTranslations];
     } failure:^(NSError *error) {
         
         [self displayError:error];
     }];
+     */
 }
 
 - (void)initializeModel {
     
     self.gameModel = [[GameModel alloc] init];
     [self requestSourceWords];
+    [self reloadGameCommonInfo];
 }
 
 - (void)gameStepInitialized:(NSNotification *)notification {
@@ -116,7 +139,7 @@
     
     if (self.gameModel.currentPage == index) {
         
-        [self reloadGameTask];
+        [self reloadGameView];
     }
 }
 
@@ -159,8 +182,14 @@
 }
 
 - (IBAction)translationCaseSubmitted:(UIButton *)sender {
+
+    [self.gameModel stepSolved:sender.tag];
+    [self reloadGameView];
 }
 
 - (IBAction)changePage:(UIButton *)sender {
+    
+    [self.gameModel changePage:sender.tag];
+    [self reloadGameView];
 }
 @end

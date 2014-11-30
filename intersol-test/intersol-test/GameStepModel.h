@@ -12,8 +12,10 @@
 
 @property (nonatomic) NSMutableArray * selectedWordsIndexes;
 @property (nonatomic) NSMutableArray * selectedWordsTranslations;
-@property (nonatomic) int correctTranslationIndex;
+@property (nonatomic) NSNumber * correctTranslationIndex;
 @property (nonatomic) int userTranslationIndex;
 @property (nonatomic) int score;
+
+@property (nonatomic, readonly) BOOL isSolved;
 
 @end
