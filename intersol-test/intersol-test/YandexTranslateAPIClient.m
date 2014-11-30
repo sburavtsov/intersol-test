@@ -81,6 +81,7 @@ NSString * const kTranslationFormat = @"plain";
  
                                NSDictionary *response = responseObject;
 
+                               NSLog(@"Yandex response: %d", [response[@"code"] integerValue] );
                                if (200 == [response[@"code"] integerValue]) {
                                    
                                    if (success) {

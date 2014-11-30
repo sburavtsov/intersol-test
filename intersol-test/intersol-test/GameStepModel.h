@@ -17,5 +17,6 @@
 @property (nonatomic) int score;
 
 @property (nonatomic, readonly) BOOL isSolved;
+@property (nonatomic, readonly) BOOL solutionIsCorrect;
 
 @end

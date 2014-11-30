@@ -49,32 +49,59 @@
     [alert show];
 }
 
-- (void)reloadGameCommonInfo {
+- (void)updateButton:(UIButton *)button forIndex:(int)index {
     
+    GameStepModel *model = self.gameModel.currentStep;
+    
+    [button setTitle:[model.selectedWordsTranslations objectAtIndex:index] forState:UIControlStateNormal];
+    button.tag = [[model.selectedWordsIndexes objectAtIndex:index] integerValue];
+    button.enabled = ! model.isSolved;
+/*
+    if (model.isSolved) {
+
+        if (button.tag == [model.correctTranslationIndex integerValue]) {
+            
+            button.backgroundColor = [UIColor greenColor];
+        } else {
+            
+            button.backgroundColor = [UIColor redColor];
+        }
+    } else {
+        
+        button.backgroundColor = [UIColor lightGrayColor];
+    }
+ */
 }
 
 - (void)reloadGameView {
 
     GameStepModel *model = self.gameModel.currentStep;
+    
     self.wordToTranslate.text = [self.gameModel.sourceWordsBase objectAtIndex:[model.correctTranslationIndex integerValue]];
     
-    [self.translation1Button setTitle:[model.selectedWordsTranslations objectAtIndex:0] forState:UIControlStateNormal];
-    self.translation1Button.tag = [[model.selectedWordsIndexes objectAtIndex:0] integerValue];
-    self.translation1Button.enabled = ! model.isSolved;
-
-    [self.translation2Button setTitle:[model.selectedWordsTranslations objectAtIndex:1] forState:UIControlStateNormal];
-    self.translation2Button.tag = [[model.selectedWordsIndexes objectAtIndex:1] integerValue];
-    self.translation2Button.enabled = ! model.isSolved;
+    if (! model.isSolved) {
+        
+        self.wordToTranslate.backgroundColor = [UIColor lightGrayColor];
+    } else {
+        
+        if (model.solutionIsCorrect) {
+            
+            self.wordToTranslate.backgroundColor = [UIColor greenColor];
+        } else {
+            
+            self.wordToTranslate.backgroundColor = [UIColor redColor];
+        }
+    }
     
-    [self.translation3Button setTitle:[model.selectedWordsTranslations objectAtIndex:2] forState:UIControlStateNormal];
-    self.translation3Button.tag = [[model.selectedWordsIndexes objectAtIndex:2] integerValue];
-    self.translation3Button.enabled = ! model.isSolved;
+    [self updateButton:self.translation1Button forIndex:0];
+    [self updateButton:self.translation2Button forIndex:1];
+    [self updateButton:self.translation3Button forIndex:2];
     
     self.progressLabel.text = [NSString stringWithFormat:@"%d", self.gameModel.currentPage];
     self.scoreLabel.text = [NSString stringWithFormat:@"%d", self.gameModel.playersScore];
     
-    self.nextPageButton.enabled = (self.gameModel.currentPage < self.gameModel.solvedPages);
-    self.previousPageButton.enabled = (self.gameModel.currentPage > 0);
+    self.nextPageButton.enabled = self.gameModel.canChangePageForward;
+    self.previousPageButton.enabled = self.gameModel.canChangePageBack;
 }
 
 - (void)requestTranslations {
@@ -130,7 +157,6 @@
     
     self.gameModel = [[GameModel alloc] init];
     [self requestSourceWords];
-    [self reloadGameCommonInfo];
 }
 
 - (void)gameStepInitialized:(NSNotification *)notification {

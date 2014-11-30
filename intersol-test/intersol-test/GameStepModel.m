@@ -9,6 +9,7 @@
 #import "GameStepModel.h"
 
 @implementation GameStepModel
+
 @synthesize isSolved;
 
 - (instancetype)init {
@@ -22,6 +23,9 @@
     
     self.selectedWordsIndexes = [NSMutableArray array];
     self.selectedWordsTranslations = [NSMutableArray array];
+    isSolved = NO;
+    
+    _userTranslationIndex = -1;
 
     return self;
 }
@@ -36,7 +40,7 @@
 - (void)setUserTranslationIndex:(int)userTranslationIndex {
 
     isSolved = YES;
-    
+    _userTranslationIndex = userTranslationIndex;
     if (userTranslationIndex == [_correctTranslationIndex integerValue]) {
         
         _score = 10;
@@ -47,6 +51,11 @@
 - (BOOL)isSolved {
     
     return isSolved;
+}
+
+- (BOOL) solutionIsCorrect {
+    
+    return (_userTranslationIndex == [_correctTranslationIndex integerValue]);
 }
 
 @end

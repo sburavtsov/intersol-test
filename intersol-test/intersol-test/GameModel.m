@@ -22,11 +22,11 @@
     
     self.gameStepCasesLimit = 3;
     
-    self.gameSessionTasksLimit = 15;
+    self.gameSessionTasksLimit = 3;
     
-    self.currentPage = 0;
+    _currentPage = 0;
     
-    self.solvedPages = 0;
+    _solvedPages = 0;
     
     return self;
 }
@@ -48,7 +48,7 @@
         _currentPage = 0;
     }
     
-    if (_currentPage > _gameSteps.count) {
+    if (_currentPage >= _gameSteps.count) {
         
         _currentPage = _gameSteps.count - 1;
     }
@@ -62,6 +62,16 @@
 - (void)changePage:(int)direction {
     
     self.currentPage += direction;
+}
+
+- (BOOL)canChangePageBack {
+    
+    return self.currentPage > 0;
+}
+
+- (BOOL)canChangePageForward {
+    
+    return (self.currentPage < self.solvedPages) && (self.currentPage + 1 < self.gameSessionTasksLimit);
 }
 
 @end
