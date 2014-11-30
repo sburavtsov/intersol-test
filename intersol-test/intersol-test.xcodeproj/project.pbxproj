@@ -15,6 +15,9 @@
 		380679EB1A24C955004A58CA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380679E91A24C955004A58CA /* LaunchScreen.xib */; };
 		380679F71A24C955004A58CA /* intersol_testTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 380679F61A24C955004A58CA /* intersol_testTests.m */; };
 		3815D1751A24CB0F000A9D32 /* YandexTranslateAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3815D1741A24CB0F000A9D32 /* YandexTranslateAPIClient.m */; };
+		384B88381A2896D30045139F /* RandomWordAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 384B88371A2896D30045139F /* RandomWordAPIClient.m */; };
+		385D7F6C1A2BAA3F00451FBC /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 385D7F6B1A2BAA3F00451FBC /* GameModel.m */; };
+		385D7F6F1A2BB02300451FBC /* GameStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 385D7F6E1A2BB02300451FBC /* GameStepModel.m */; };
 		B1FCD750D4932DB0C20547B1 /* libPods-intersol-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10289D7D19352C16BCA151B0 /* libPods-intersol-test.a */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +49,12 @@
 		380679F61A24C955004A58CA /* intersol_testTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = intersol_testTests.m; sourceTree = "<group>"; };
 		3815D1731A24CB0F000A9D32 /* YandexTranslateAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YandexTranslateAPIClient.h; sourceTree = "<group>"; };
 		3815D1741A24CB0F000A9D32 /* YandexTranslateAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YandexTranslateAPIClient.m; sourceTree = "<group>"; };
+		384B88361A2896D30045139F /* RandomWordAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomWordAPIClient.h; sourceTree = "<group>"; };
+		384B88371A2896D30045139F /* RandomWordAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomWordAPIClient.m; sourceTree = "<group>"; };
+		385D7F6A1A2BAA3F00451FBC /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
+		385D7F6B1A2BAA3F00451FBC /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
+		385D7F6D1A2BB02300451FBC /* GameStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepModel.h; sourceTree = "<group>"; };
+		385D7F6E1A2BB02300451FBC /* GameStepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepModel.m; sourceTree = "<group>"; };
 		8C30A2936CB4E8CF017287DF /* Pods-intersol-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-intersol-test.release.xcconfig"; path = "Pods/Target Support Files/Pods-intersol-test/Pods-intersol-test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +110,12 @@
 				380679DA1A24C955004A58CA /* Supporting Files */,
 				3815D1731A24CB0F000A9D32 /* YandexTranslateAPIClient.h */,
 				3815D1741A24CB0F000A9D32 /* YandexTranslateAPIClient.m */,
+				384B88361A2896D30045139F /* RandomWordAPIClient.h */,
+				384B88371A2896D30045139F /* RandomWordAPIClient.m */,
+				385D7F6A1A2BAA3F00451FBC /* GameModel.h */,
+				385D7F6B1A2BAA3F00451FBC /* GameModel.m */,
+				385D7F6D1A2BB02300451FBC /* GameStepModel.h */,
+				385D7F6E1A2BB02300451FBC /* GameStepModel.m */,
 			);
 			path = "intersol-test";
 			sourceTree = "<group>";
@@ -283,10 +298,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				385D7F6F1A2BB02300451FBC /* GameStepModel.m in Sources */,
 				380679E31A24C955004A58CA /* ViewController.m in Sources */,
+				385D7F6C1A2BAA3F00451FBC /* GameModel.m in Sources */,
 				3815D1751A24CB0F000A9D32 /* YandexTranslateAPIClient.m in Sources */,
 				380679E01A24C955004A58CA /* AppDelegate.m in Sources */,
 				380679DD1A24C955004A58CA /* main.m in Sources */,
+				384B88381A2896D30045139F /* RandomWordAPIClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

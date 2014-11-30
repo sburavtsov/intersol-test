@@ -9,7 +9,7 @@
 #import "YandexTranslateAPIClient.h"
 
 NSString * const kAPIKey = @"trnsl.1.1.20141124T170009Z.23014768d74808f2.e8759991d3674f2120e7664adc2da465b520542d";
-NSString * const kBaseURLString = @"https://translate.yandex.net/api/v1.5/tr.json/";
+NSString * const kBaseYandexTranslateAPIURLString = @"https://translate.yandex.net/api/v1.5/tr.json/";
 NSString * const kTranslationDirection = @"en-ru";
 NSString * const kTranslationFormat = @"plain";
 
@@ -22,7 +22,7 @@ NSString * const kTranslationFormat = @"plain";
     static dispatch_once_t oncePredicate;
     
     dispatch_once(&oncePredicate, ^{
-        _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:kBaseURLString]];
+        _sharedClient = [[self alloc] initWithBaseURL:[NSURL URLWithString:kBaseYandexTranslateAPIURLString]];
     });
     
     return _sharedClient;
@@ -81,6 +81,7 @@ NSString * const kTranslationFormat = @"plain";
  
                                NSDictionary *response = responseObject;
 
+                               NSLog(@"Yandex response: %d", [response[@"code"] integerValue] );
                                if (200 == [response[@"code"] integerValue]) {
                                    
                                    if (success) {
