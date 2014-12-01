@@ -57,12 +57,12 @@ NSString * const kWordnikUsername = @"sburavtsov";
     NSDictionary *parameters = @{@"hasDictionaryDef" : @YES,
                                  @"includePartOfSpeech" : @"noun",
                                  @"excludePartOfSpeech" : @"proper-noun,noun-plural",
-                                 @"minCorpusCount" : @0,
+                                 @"minCorpusCount" : @35,
                                  @"maxCorpusCount" : @-1,
-                                 @"minDictionaryCount" : @1,
+                                 @"minDictionaryCount" : @25,
                                  @"maxDictionaryCount" : @-1,
                                  @"minLength" : @5,
-                                 @"maxLength" : @13,
+                                 @"maxLength" : @10,
                                  @"limit" : [NSNumber numberWithInt:count],
                                  @"api_key" : kWordnikAPIKey};
     

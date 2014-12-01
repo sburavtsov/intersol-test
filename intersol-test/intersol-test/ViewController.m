@@ -146,20 +146,23 @@ UIWebView *_webView;
 
 - (void)requestSourceWords {
     
-    self.gameModel.sourceWordsBase = [NSArray arrayWithObjects:@"test",@"beauty", @"fun", @"salt", @"pepper", @"bike", @"daemon", @"chicken", @"cannon", @"folder", @"river", @"rain", nil];
-
-    [self requestTranslations];
-    /*
+    BOOL useWordnik = YES;
     
-    [self.randomWordClient getWords:self.gameModel.gameSessionTasksLimit * self.gameModel.gameStepCasesLimit success:^(NSArray *randomWordsArray) {
-        
-        self.gameModel.sourceWordsBase = randomWordsArray;
+    if (! useWordnik) {
+    
+        self.gameModel.sourceWordsBase = [NSArray arrayWithObjects:@"test",@"beauty", @"fun", @"salt", @"pepper", @"bike", @"daemon", @"chicken", @"cannon", @"folder", @"river", @"rain", nil];
         [self requestTranslations];
-    } failure:^(NSError *error) {
-        
-        [self displayError:error];
-    }];
-     */
+    } else {
+    
+        [self.randomWordClient getWords:self.gameModel.gameSessionTasksLimit * self.gameModel.gameStepCasesLimit success:^(NSArray *randomWordsArray) {
+            
+            self.gameModel.sourceWordsBase = randomWordsArray;
+            [self requestTranslations];
+        } failure:^(NSError *error) {
+            
+            [self displayError:error];
+        }];
+    }
 }
 
 - (void)initializeModel {

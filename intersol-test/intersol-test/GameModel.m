@@ -22,7 +22,7 @@
     
     self.gameStepCasesLimit = 3;
     
-    self.gameSessionTasksLimit = 3;
+    self.gameSessionTasksLimit = 15;
     
     _currentPage = 0;
     
