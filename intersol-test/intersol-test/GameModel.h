@@ -27,10 +27,14 @@
 
 @property (nonatomic) int gameSessionTasksLimit;
 
+
+
 - (void)stepSolved:(int)wordIndex;
 - (void)changePage:(int)direction;
 
 @property (nonatomic, readonly) BOOL canChangePageForward;
 @property (nonatomic, readonly) BOOL canChangePageBack;
+
+@property (nonatomic, readonly) BOOL gameSessionCompleted;
 
 @end

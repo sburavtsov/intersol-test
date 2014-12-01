@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "44EEDB714C93B3FB8F1E70DD"
+               BlueprintIdentifier = "A5A6BC32F25F42098442F8F9"
                BuildableName = "libPods-intersol-test-GameCenterManager.a"
                BlueprintName = "Pods-intersol-test-GameCenterManager"
                ReferencedContainer = "container:Pods.xcodeproj">

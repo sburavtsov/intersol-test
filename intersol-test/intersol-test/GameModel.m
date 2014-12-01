@@ -74,4 +74,9 @@
     return (self.currentPage < self.solvedPages) && (self.currentPage + 1 < self.gameSessionTasksLimit);
 }
 
+- (BOOL)gameSessionCompleted {
+    
+    return (self.solvedPages == self.gameSessionTasksLimit);
+}
+
 @end

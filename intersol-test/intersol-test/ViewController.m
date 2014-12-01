@@ -38,9 +38,15 @@
 @property (nonatomic) YandexTranslateAPIClient * translateClient;
 @property (nonatomic) GameModel *gameModel;
 
+@property (nonatomic) BOOL isVKActive;
+
 @end
 
 @implementation ViewController
+
+static NSString *const kVKAppID = @"4658519";
+
+UIWebView *_webView;
 
 - (void)displayError:(NSError *)error {
     
@@ -186,8 +192,17 @@
     [self initializeModel];
     
     [[GameCenterManager sharedManager] setDelegate:self];
-
-    /*
+    
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    _webView = [[UIWebView alloc] initWithFrame:frame];
+    [self.view addSubview:_webView];
+    
+    _webView.hidden = NO;
+    
+    [[VKConnector sharedInstance] startWithAppID:kVKAppID
+                                      permissons:@[@"wall"]
+                                         webView:_webView
+                                        delegate:self];    /*
     [self.translateClient translateWord:@"world" success:^(NSString *translationResult) {
 
         NSLog(@"Translated to: %@", translationResult);
@@ -206,7 +221,6 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:YES];
-    
 }
 
 - (void)dealloc {
@@ -219,12 +233,27 @@
     [self.gameModel stepSolved:sender.tag];
     [self reloadGameView];
     
-    BOOL isGameCenterAvailable = [[GameCenterManager sharedManager] checkGameCenterAvailability];
-    
-    if (isGameCenterAvailable) {
+    if (self.gameModel.gameSessionCompleted) {
         
-        [[GameCenterManager sharedManager] saveAndReportScore:self.gameModel.playersScore leaderboard:@"intersoltest" sortOrder:GameCenterSortOrderHighToLow];
+        BOOL isGameCenterAvailable = [[GameCenterManager sharedManager] checkGameCenterAvailability];
+        
+        if (isGameCenterAvailable) {
+            
+            [[GameCenterManager sharedManager] saveAndReportScore:self.gameModel.playersScore leaderboard:@"intersoltest" sortOrder:GameCenterSortOrderHighToLow];
+        }
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Game over"
+                                                        message:[NSString stringWithFormat:@"Earned: %d points\nGame will restart now.", self.gameModel.playersScore]
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex; {
+    
+    [self initializeModel];
 }
 
 - (IBAction)changePage:(UIButton *)sender {
@@ -280,7 +309,6 @@
     }
 }
 
-
 - (IBAction)showLeaderboard:(UIButton *)sender {
     
     BOOL isGameCenterAvailable = [[GameCenterManager sharedManager] checkGameCenterAvailability];
@@ -290,4 +318,34 @@
          [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:self];
     }
 }
+
+#pragma mark - VK
+- (IBAction)vkPost:(id)sender {
+ 
+    VKRequestManager *rm = [[VKRequestManager alloc] initWithDelegate:self];
+
+    NSDictionary * wallPost = @{@"message" : @"Intersol test share"};
+    [rm wallPost:wallPost];
+}
+
+#pragma mark - VKRequestDelegate
+                            
+- (void)VKRequest:(VKRequest *)request response:(id)response {
+    
+}
+
+#pragma mark - VKConnectorDelegate
+
+- (void)VKConnector:(VKConnector *)connector accessTokenRenewalSucceeded:(VKAccessToken *)accessToken {
+
+    NSLog(@"OK: %@", accessToken);
+    [_webView removeFromSuperview];
+}
+
+- (void)VKConnector:(VKConnector *)connector accessTokenRenewalFailed:(VKAccessToken *)accessToken {
+    
+    NSLog(@"User denied to authorize app.");
+    [_webView removeFromSuperview];
+}
+
 @end

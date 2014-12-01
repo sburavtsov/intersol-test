@@ -24,7 +24,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-intersol-test-VK-ios-sdk.xcscheme</key>
+		<key>Pods-intersol-test-Vkontakte-iOS-SDK-LV.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,32 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2DBA7D1778C7C2D71BF0474B</key>
+		<key>01DCFBE295CFCC6ED3D3BF6B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>44EEDB714C93B3FB8F1E70DD</key>
+		<key>2CE36EEE40E17BE87FA6D7AE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7F27EB1570773EEDC32656E1</key>
+		<key>A5A6BC32F25F42098442F8F9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8575BD0BCCE74047D48C0055</key>
+		<key>A73CC42B906091385BBA44F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8F4AF5DAE172952544F8F40A</key>
+		<key>B71A754057B926A922C7C1F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BE2324D4CBD2FE92C0E9BC48</key>
+		<key>D59CC071A8A746BF360100B5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

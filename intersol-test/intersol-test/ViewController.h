@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <GameCenterManager/GameCenterManager.h>
+#import <Vkontakte-iOS-SDK-LV/VkontakteSDK.h>
 
-@interface ViewController : UIViewController <GameCenterManagerDelegate>
+@interface ViewController : UIViewController <GameCenterManagerDelegate, VKConnectorDelegate, VKRequestDelegate>
 
 - (void)gameCenterManager:(GameCenterManager *)manager authenticateUser:(UIViewController *)gameCenterLoginController;
 

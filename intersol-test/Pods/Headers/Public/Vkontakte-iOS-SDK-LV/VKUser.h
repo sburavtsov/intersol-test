@@ -1,0 +1,1 @@
+../../../Vkontakte-iOS-SDK-LV/Project/Vkontakte-iOS-SDK-LV/VKUser/VKUser.h

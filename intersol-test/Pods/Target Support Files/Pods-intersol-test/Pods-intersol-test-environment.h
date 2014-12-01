@@ -66,10 +66,9 @@
 #define COCOAPODS_VERSION_MINOR_TestFlightSDK 0
 #define COCOAPODS_VERSION_PATCH_TestFlightSDK 2
 
-// VK-ios-sdk
-#define COCOAPODS_POD_AVAILABLE_VK_ios_sdk
-// This library does not follow semantic-versioning,
-// so we were not able to define version macros.
-// Please contact the author.
-// Version: 1.0.8.6.
+// Vkontakte-iOS-SDK-LV
+#define COCOAPODS_POD_AVAILABLE_Vkontakte_iOS_SDK_LV
+#define COCOAPODS_VERSION_MAJOR_Vkontakte_iOS_SDK_LV 4
+#define COCOAPODS_VERSION_MINOR_Vkontakte_iOS_SDK_LV 7
+#define COCOAPODS_VERSION_PATCH_Vkontakte_iOS_SDK_LV 14
 
