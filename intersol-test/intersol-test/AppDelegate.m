@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+#import <GameCenterManager/GameCenterManager.h>
 
 @interface AppDelegate ()
 
@@ -20,7 +21,7 @@
     // Override point for customization after application launch.
     
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
-    
+    [[GameCenterManager sharedManager] setupManager];
     
     return YES;
 }

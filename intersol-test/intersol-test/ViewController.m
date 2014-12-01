@@ -10,6 +10,7 @@
 
 #import "YandexTranslateAPIClient.h"
 #import "RandomWordAPIClient.h"
+#import <GameCenterManager/GameCenterManager.h>
 
 #import "GameModel.h"
 
@@ -27,6 +28,8 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *nextPageButton;
 @property (weak, nonatomic) IBOutlet UIButton *previousPageButton;
+@property (weak, nonatomic) IBOutlet UIImageView *playerPhoto;
+@property (weak, nonatomic) IBOutlet UILabel *playerName;
 
 - (IBAction)translationCaseSubmitted:(UIButton *)sender;
 - (IBAction)changePage:(UIButton *)sender;
@@ -181,6 +184,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gameStepInitialized:) name:@"gameStepReady" object:nil];
 
     [self initializeModel];
+    
+    [[GameCenterManager sharedManager] setDelegate:self];
 
     /*
     [self.translateClient translateWord:@"world" success:^(NSString *translationResult) {
@@ -200,6 +205,8 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:YES];
+    
 }
 
 - (void)dealloc {
@@ -211,11 +218,76 @@
 
     [self.gameModel stepSolved:sender.tag];
     [self reloadGameView];
+    
+    BOOL isGameCenterAvailable = [[GameCenterManager sharedManager] checkGameCenterAvailability];
+    
+    if (isGameCenterAvailable) {
+        
+        [[GameCenterManager sharedManager] saveAndReportScore:self.gameModel.playersScore leaderboard:@"intersoltest" sortOrder:GameCenterSortOrderHighToLow];
+    }
 }
 
 - (IBAction)changePage:(UIButton *)sender {
     
     [self.gameModel changePage:sender.tag];
     [self reloadGameView];
+}
+
+
+#pragma mark - GameCenter Manager Delegate
+
+- (void)gameCenterManager:(id)manager authenticateUser:(UIViewController *)gameCenterLoginController {
+    
+    [self presentViewController:gameCenterLoginController animated:YES completion:^{
+    }];
+}
+
+
+- (void)gameCenterManager:(GameCenterManager *)manager availabilityChanged:(NSDictionary *)availabilityInformation {
+    
+    NSLog(@"GC Availabilty: %@", availabilityInformation);
+    
+    if (! [[availabilityInformation objectForKey:@"status"] isEqualToString:@"GameCenter Available"]) {
+        
+        self.playerName.text = @"GameCenter Unavailable";
+    } else {
+
+        GKLocalPlayer *player = [[GameCenterManager sharedManager] localPlayerData];
+        
+        if (player) {
+            
+            self.playerPhoto.layer.cornerRadius = self.playerPhoto.frame.size.height/2;
+            self.playerPhoto.layer.masksToBounds = YES;
+            
+            self.playerName.text = player.displayName;
+            
+            if ([player isUnderage] == NO) {
+                
+                [[GameCenterManager sharedManager] localPlayerPhoto:^(UIImage *playerImage) {
+                    
+                    self.playerPhoto.image = playerImage;
+                }];
+            } else {
+                
+                self.playerName.text = [player.displayName stringByAppendingString:@" underage"
+                                        ];
+            }
+            
+        } else {
+            
+            self.playerName.text = [NSString stringWithFormat:@"No GameCenter player found."];
+        }
+    }
+}
+
+
+- (IBAction)showLeaderboard:(UIButton *)sender {
+    
+    BOOL isGameCenterAvailable = [[GameCenterManager sharedManager] checkGameCenterAvailability];
+    
+    if (isGameCenterAvailable) {
+        
+         [[GameCenterManager sharedManager] presentLeaderboardsOnViewController:self];
+    }
 }
 @end

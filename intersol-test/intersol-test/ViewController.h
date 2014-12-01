@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GameCenterManager/GameCenterManager.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <GameCenterManagerDelegate>
 
+- (void)gameCenterManager:(GameCenterManager *)manager authenticateUser:(UIViewController *)gameCenterLoginController;
 
 @end
 

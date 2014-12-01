@@ -18,6 +18,7 @@
 		384B88381A2896D30045139F /* RandomWordAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 384B88371A2896D30045139F /* RandomWordAPIClient.m */; };
 		385D7F6C1A2BAA3F00451FBC /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 385D7F6B1A2BAA3F00451FBC /* GameModel.m */; };
 		385D7F6F1A2BB02300451FBC /* GameStepModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 385D7F6E1A2BB02300451FBC /* GameStepModel.m */; };
+		385D7F711A2BE27300451FBC /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 385D7F701A2BE27300451FBC /* GameKit.framework */; };
 		B1FCD750D4932DB0C20547B1 /* libPods-intersol-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 10289D7D19352C16BCA151B0 /* libPods-intersol-test.a */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		385D7F6B1A2BAA3F00451FBC /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 		385D7F6D1A2BB02300451FBC /* GameStepModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameStepModel.h; sourceTree = "<group>"; };
 		385D7F6E1A2BB02300451FBC /* GameStepModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameStepModel.m; sourceTree = "<group>"; };
+		385D7F701A2BE27300451FBC /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		8C30A2936CB4E8CF017287DF /* Pods-intersol-test.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-intersol-test.release.xcconfig"; path = "Pods/Target Support Files/Pods-intersol-test/Pods-intersol-test.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +66,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1FCD750D4932DB0C20547B1 /* libPods-intersol-test.a in Frameworks */,
+				385D7F711A2BE27300451FBC /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +152,7 @@
 		3EBBA0F5A76E9620A4882D2E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				385D7F701A2BE27300451FBC /* GameKit.framework */,
 				10289D7D19352C16BCA151B0 /* libPods-intersol-test.a */,
 			);
 			name = Frameworks;
@@ -214,6 +218,12 @@
 				TargetAttributes = {
 					380679D61A24C955004A58CA = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 7YZZ6DL86D;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					380679EF1A24C955004A58CA = {
 						CreatedOnToolsVersion = 6.1;
@@ -429,9 +439,12 @@
 			baseConfigurationReference = 290DE5D33D1B9A766E964938 /* Pods-intersol-test.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "intersol-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -440,9 +453,12 @@
 			baseConfigurationReference = 8C30A2936CB4E8CF017287DF /* Pods-intersol-test.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "intersol-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
